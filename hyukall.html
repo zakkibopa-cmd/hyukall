@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HYUKALL.ID — Joki & Top Up Game Tercepat di Lautan Dalam</title>
+<meta name="description" content="Hyukall.id — Jasa joki rank dan top up game tercepat, aman, dan bergaransi. Diburu cepat seperti hiu di lautan dalam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --abyss:#010d1a;
+  --deep:#04233d;
+  --ocean:#0b5280;
+  --surf:#1a8ac4;
+  --cyan:#4dd9ff;
+  --bio:#00ffc8;
+  --foam:#e8f6ff;
+  --glass:rgba(8,40,70,0.35);
+  --glass-hi:rgba(255,255,255,0.07);
+  --glass-border:rgba(100,200,255,0.22);
+  --glass-border-hi:rgba(150,220,255,0.45);
+  --font-d:'Bricolage Grotesque',sans-serif;
+  --font-b:'Inter',sans-serif;
+  --font-m:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-b);
+  background:var(--abyss);
+  color:var(--foam);
+  overflow-x:hidden;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;-webkit-tap-highlight-color:transparent;}
+/* GPU layer for sections to help scroll */
+section.pad{content-visibility:auto;contain-intrinsic-size:0 600px;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px;}
+@media(max-width:480px){.wrap{padding:0 16px;}}
+
+/* ─── OCEAN BACKGROUND ─── */
+.ocean-bg{
+  position:fixed;inset:0;z-index:-5;
+  will-change:transform;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% -10%, rgba(11,82,128,0.8) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 0% 50%, rgba(4,35,61,0.9) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(0,255,200,0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #010d1a 0%, #031828 30%, #042840 60%, #021018 100%);
+}
+
+/* Underwater light rays */
+.light-rays{
+  position:fixed;inset:0;z-index:-4;overflow:hidden;pointer-events:none;
+  will-change:transform;
+  contain:strict;
+}
+.light-rays::before,.light-rays::after{
+  content:'';position:absolute;top:-20%;
+  width:2px;background:linear-gradient(180deg, rgba(77,217,255,0.18), rgba(77,217,255,0.04) 50%, transparent);
+  transform-origin:top center;
+  filter:blur(8px);
+  animation:lightSway 18s ease-in-out infinite;
+  will-change:transform;
+}
+.light-rays::before{
+  left:20%;height:120%;
+  box-shadow:
+    60px 0 20px rgba(77,217,255,0.08),
+    140px 0 30px rgba(77,217,255,0.05),
+    250px 0 25px rgba(0,255,200,0.06),
+    380px 0 20px rgba(77,217,255,0.07),
+    520px 0 30px rgba(0,255,200,0.05),
+    680px 0 25px rgba(77,217,255,0.08);
+  width:3px;
+}
+.light-rays::after{
+  left:55%;height:110%;animation-delay:-9s;animation-duration:22s;
+  box-shadow:
+    80px 0 20px rgba(77,217,255,0.07),
+    190px 0 25px rgba(0,255,200,0.05),
+    310px 0 20px rgba(77,217,255,0.06);
+  width:2px;
+}
+@keyframes lightSway{
+  0%,100%{transform:skewX(-4deg);}
+  50%{transform:skewX(5deg);}
+}
+
+/* Caustic shimmer */
+.caustics{
+  position:fixed;inset:0;z-index:-3;opacity:0.6;mix-blend-mode:screen;
+  will-change:background-position;
+  background:
+    radial-gradient(ellipse 35% 25% at 15% 10%,rgba(77,217,255,0.22),transparent),
+    radial-gradient(ellipse 30% 20% at 85% 20%,rgba(0,255,200,0.16),transparent),
+    radial-gradient(ellipse 40% 30% at 50% 75%,rgba(77,217,255,0.14),transparent),
+    radial-gradient(ellipse 25% 20% at 30% 60%,rgba(0,255,200,0.12),transparent);
+  background-size:300% 300%;
+  animation:caustic 28s ease-in-out infinite alternate;
+}
+@keyframes caustic{
+  0%{background-position:0% 0%,100% 0%,50% 100%,0% 50%;}
+  100%{background-position:40% 30%,60% 40%,70% 60%,80% 20%;}
+}
+
+.grain{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:0.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ─── LIQUID GLASS UTILITY ─── */
+.glass{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(24px) saturate(160%) brightness(1.04);
+  -webkit-backdrop-filter:blur(24px) saturate(160%) brightness(1.04);
+  border-radius:22px;
+  box-shadow:
+    0 8px 40px rgba(1,13,26,0.4),
+    0 1px 0 rgba(255,255,255,0.1) inset,
+    0 -1px 0 rgba(0,0,0,0.2) inset;
+}
+.glass-hi{
+  background:rgba(10,50,90,0.45);
+  border-color:var(--glass-border-hi);
+  box-shadow:
+    0 8px 40px rgba(1,13,26,0.45),
+    0 0 0 1px rgba(77,217,255,0.12),
+    0 1px 0 rgba(255,255,255,0.15) inset,
+    0 -1px 0 rgba(0,0,0,0.25) inset;
+}
+.glass-glow{
+  box-shadow:
+    0 0 40px rgba(77,217,255,0.15),
+    0 8px 40px rgba(1,13,26,0.4),
+    0 1px 0 rgba(255,255,255,0.12) inset;
+}
+
+/* ─── BUBBLES ─── */
+.bubble-field,.ambient-bubbles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;contain:layout style;}
+.ambient-bubbles{position:fixed;z-index:-1;}
+.bubble{
+  position:absolute;bottom:-10%;border-radius:50%;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.7), rgba(77,217,255,0.1) 50%, transparent 70%),
+    radial-gradient(circle at 70% 70%, rgba(0,255,200,0.15), transparent 60%);
+  border:1px solid rgba(255,255,255,0.3);
+  animation:rise linear infinite;
+  will-change:transform,opacity;
+}
+.bubble.soft{border-color:rgba(255,255,255,0.12);filter:blur(1.5px);}
+.bubble.tiny{filter:blur(0.3px);}
+.bubble.wobble{animation-name:riseWobble;}
+@keyframes rise{
+  0%{transform:translateY(0) scale(1);opacity:0;}
+  8%{opacity:0.9;}90%{opacity:0.4;}
+  100%{transform:translateY(-115vh) translateX(var(--drift,20px)) scale(0.95);opacity:0;}
+}
+@keyframes riseWobble{
+  0%{transform:translateY(0) translateX(0);opacity:0;}
+  8%{opacity:0.8;}
+  25%{transform:translateY(-28vh) translateX(calc(var(--drift,20px)*-1));}
+  50%{transform:translateY(-57vh) translateX(var(--drift,20px));}
+  75%{transform:translateY(-85vh) translateX(calc(var(--drift,20px)*-0.5));}
+  90%{opacity:0.35;}
+  100%{transform:translateY(-115vh) translateX(var(--drift,20px));opacity:0;}
+}
+
+/* ─── NAVBAR ─── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:12px 20px;
+  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(1,15,28,0.6);
+  backdrop-filter:blur(24px) saturate(160%);
+  -webkit-backdrop-filter:blur(24px) saturate(160%);
+  border-bottom:1px solid rgba(77,217,255,0.15);
+  box-shadow:0 8px 40px rgba(0,0,0,0.3);
+}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-weight:800;font-size:1.1rem;letter-spacing:0.3px;}
+.brand img{height:40px;width:auto;object-fit:contain;}
+.brand small{display:block;font-family:var(--font-m);font-size:0.52rem;font-weight:400;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-top:1px;}
+.nav-links{display:flex;gap:28px;font-size:0.88rem;font-weight:500;}
+.nav-links a{opacity:0.75;transition:all 0.2s;position:relative;padding-bottom:2px;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--cyan);transition:width 0.3s;}
+.nav-links a:hover{opacity:1;color:var(--cyan);}
+.nav-links a:hover::after{width:100%;}
+/* Mobile nav open state */
+.nav-links.open{
+  display:flex;flex-direction:column;gap:0;
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(1,13,26,0.97);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  align-items:center;justify-content:center;
+  z-index:99;padding:20px;
+}
+.nav-links.open a{font-size:1.4rem;font-weight:700;opacity:0.9;padding:16px 0;border-bottom:1px solid rgba(77,217,255,0.1);width:100%;text-align:center;}
+.nav-actions{display:flex;align-items:center;gap:8px;z-index:101;position:relative;}
+.nav-toggle{display:none;flex-direction:column;gap:5px;z-index:101;position:relative;}
+.nav-toggle span{width:22px;height:2px;background:var(--foam);border-radius:2px;transition:all 0.3s;}
+.nav-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.nav-toggle.active span:nth-child(2){opacity:0;}
+.nav-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 24px;border-radius:999px;font-weight:600;font-size:0.87rem;
+  transition:all 0.25s cubic-bezier(0.4,0,0.2,1);
+  white-space:nowrap;letter-spacing:0.2px;
+}
+.btn-ghost{
+  border:1px solid var(--glass-border);
+  background:rgba(4,35,61,0.4);
+  backdrop-filter:blur(12px);color:var(--foam);
+}
+.btn-ghost:hover{background:rgba(10,60,100,0.5);border-color:var(--glass-border-hi);}
+.btn-primary{
+  background:linear-gradient(135deg,var(--cyan) 0%,var(--bio) 100%);
+  color:#010d1a;
+  box-shadow:0 4px 20px rgba(77,217,255,0.3),0 0 0 1px rgba(77,217,255,0.2);
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(77,217,255,0.45),0 0 60px rgba(0,255,200,0.15);
+}
+.btn-wa{
+  background:rgba(0,255,200,0.1);
+  border:1px solid rgba(0,255,200,0.35);
+  color:var(--bio);
+}
+.btn-wa:hover{background:rgba(0,255,200,0.18);transform:translateY(-2px);}
+
+/* ─── SHARK CANVAS ─── */
+.shark-canvas-wrap{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;overflow:hidden;
+  contain:strict;
+}
+#sharkCanvas{width:100%;height:100%;}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100svh;
+  display:flex;align-items:center;
+  padding:130px 0 80px;
+  overflow:hidden;
+  position:relative;
+}
+.hero-inner{
+  max-width:1200px;margin:0 auto;padding:0 20px;
+  position:relative;z-index:2;
+}
+.eyebrow{
+  font-family:var(--font-m);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--bio);display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;
+  flex-wrap:wrap;
+}
+.eyebrow-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--bio);
+  box-shadow:0 0 14px var(--bio),0 0 28px rgba(0,255,200,0.4);
+  animation:pulseDot 2s ease-in-out infinite;
+  will-change:opacity,transform;
+  flex-shrink:0;
+}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.3;transform:scale(0.8);}}
+.hero h1{
+  font-family:var(--font-d);font-weight:800;
+  font-size:clamp(2rem,6vw,4.4rem);
+  line-height:1.06;letter-spacing:-1px;
+  max-width:800px;
+  background:linear-gradient(160deg, #ffffff 0%, #a8e8ff 40%, var(--cyan) 75%, var(--bio) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:18px;
+}
+.hero p.lede{
+  font-size:clamp(0.9rem,2.5vw,1.06rem);color:rgba(232,246,255,0.72);max-width:570px;line-height:1.7;
+}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
+
+.search-panel{
+  margin-top:28px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;max-width:680px;
+}
+.seg{display:flex;gap:4px;background:rgba(1,13,26,0.5);border-radius:13px;padding:4px;flex-shrink:0;}
+.seg button{padding:8px 14px;border-radius:10px;font-size:0.8rem;font-weight:600;color:rgba(232,246,255,0.55);transition:all .25s;}
+.seg button.active{background:linear-gradient(135deg,var(--cyan),var(--bio));color:#010d1a;}
+.search-row{display:flex;flex:1;gap:8px;min-width:200px;}
+.search-row select,.search-row input{
+  flex:1;padding:11px 14px;border-radius:13px;
+  border:1px solid var(--glass-border);
+  background:rgba(1,13,26,0.5);color:var(--foam);font-size:0.86rem;font-family:inherit;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  min-width:0;
+}
+.search-row select:focus,.search-row input:focus{
+  outline:none;border-color:var(--cyan);
+  box-shadow:0 0 0 3px rgba(77,217,255,0.15);
+}
+
+.stat-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:28px;max-width:520px;}
+.stat-chip{padding:12px 16px;display:flex;flex-direction:column;gap:3px;position:relative;overflow:hidden;}
+.stat-chip::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(77,217,255,0.5),transparent);
+}
+.stat-chip strong{font-family:var(--font-d);font-size:1.3rem;color:var(--foam);font-weight:700;}
+.stat-chip span{font-size:0.68rem;color:rgba(232,246,255,0.55);text-transform:uppercase;letter-spacing:1px;}
+
+/* ─── SECTIONS ─── */
+section.pad{padding:80px 0;}
+.sec-head{max-width:640px;margin-bottom:40px;}
+.sec-tag{font-family:var(--font-m);font-size:0.73rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;}
+.sec-head h2{font-family:var(--font-d);font-weight:800;font-size:clamp(1.6rem,3.5vw,2.7rem);letter-spacing:-0.5px;line-height:1.1;}
+.sec-head p{margin-top:12px;color:rgba(232,246,255,0.62);font-size:0.95rem;line-height:1.7;}
+
+/* ─── GAME GRID ─── */
+.game-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.game-card{
+  padding:24px 20px;
+  position:relative;overflow:hidden;
+  transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1),border-color 0.3s,box-shadow 0.3s;
+  cursor:pointer;
+}
+.game-card::before{
+  content:'';position:absolute;top:-80%;left:-50%;width:60%;height:260%;
+  background:linear-gradient(120deg,transparent,rgba(77,217,255,0.12),transparent);
+  transform:rotate(25deg);transition:left 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.game-card:hover::before{left:140%;}
+.game-card:hover{
+  transform:translateY(-8px) scale(1.02);
+  border-color:rgba(77,217,255,0.45);
+  box-shadow:0 20px 50px rgba(11,82,128,0.45),0 0 0 1px rgba(77,217,255,0.15),0 0 30px rgba(77,217,255,0.08);
+}
+.game-icon{
+  width:56px;height:56px;border-radius:16px;
+  overflow:hidden;margin-bottom:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(4,35,61,0.8);
+  border:1px solid rgba(77,217,255,0.2);
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
+  position:relative;
+}
+.game-icon img{width:44px;height:44px;object-fit:cover;border-radius:10px;}
+.game-icon-fallback{
+  font-size:1.6rem;
+}
+.game-card h3{font-size:0.97rem;font-weight:700;margin-bottom:5px;letter-spacing:-0.2px;}
+.game-card .joki-count{font-size:0.75rem;color:var(--bio);font-family:var(--font-m);}
+.online-dot{
+  display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--bio);margin-right:5px;
+  box-shadow:0 0 8px var(--bio);
+  animation:pulseDot 2.2s ease-in-out infinite;
+}
+
+/* ─── FEATURES ─── */
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.feature-card{padding:32px 26px;transition:transform 0.3s,border-color 0.3s;}
+.feature-card:hover{transform:translateY(-5px);border-color:rgba(77,217,255,0.35);}
+.feature-ico{
+  width:52px;height:52px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(77,217,255,0.1);
+  border:1px solid rgba(77,217,255,0.22);
+  margin-bottom:20px;font-size:1.5rem;
+  box-shadow:0 0 20px rgba(77,217,255,0.08);
+}
+.feature-card h3{font-family:var(--font-d);font-size:1.12rem;margin-bottom:10px;font-weight:700;}
+.feature-card p{font-size:0.88rem;color:rgba(232,246,255,0.62);line-height:1.65;}
+
+/* ─── PROCESS ─── */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;}
+.process::before{
+  content:'';position:absolute;top:28px;left:10%;width:80%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(77,217,255,0.3),rgba(0,255,200,0.3),transparent);
+  z-index:0;
+}
+.process-card{padding:30px 24px;position:relative;z-index:1;}
+.process-card .num{
+  font-family:var(--font-m);font-size:0.72rem;color:var(--bio);
+  letter-spacing:2px;margin-bottom:12px;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.num-circle{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(77,217,255,0.2),rgba(0,255,200,0.1));
+  border:1px solid rgba(0,255,200,0.35);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.7rem;font-weight:700;color:var(--bio);
+}
+.process-card h3{font-family:var(--font-d);font-size:1.08rem;margin:0 0 8px;font-weight:700;}
+.process-card p{font-size:0.86rem;color:rgba(232,246,255,0.6);line-height:1.6;}
+
+/* ─── PRICING ─── */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.price-card{
+  padding:34px 28px;display:flex;flex-direction:column;
+  transition:transform 0.3s,border-color 0.3s;
+}
+.price-card:hover{transform:translateY(-6px);}
+.price-card.featured{
+  border-color:rgba(0,255,200,0.5);
+  box-shadow:0 0 0 1px rgba(0,255,200,0.2),0 24px 60px rgba(11,82,128,0.5),0 0 60px rgba(0,255,200,0.08);
+}
+.price-tag-label{
+  font-family:var(--font-m);font-size:0.7rem;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.price-tag-label img{width:22px;height:22px;border-radius:6px;object-fit:cover;}
+.price-card h3{font-family:var(--font-d);font-size:1.28rem;margin-bottom:8px;font-weight:700;}
+.price-val{font-family:var(--font-d);font-size:2.1rem;margin:14px 0 4px;color:var(--foam);font-weight:700;}
+.price-val span{font-size:0.85rem;color:rgba(232,246,255,0.5);font-family:var(--font-b);font-weight:400;}
+.price-card ul{margin:18px 0 26px;display:flex;flex-direction:column;gap:10px;}
+.price-card ul li{
+  font-size:0.87rem;color:rgba(232,246,255,0.78);
+  display:flex;gap:10px;align-items:flex-start;
+}
+.price-card ul li::before{content:"✓";color:var(--bio);font-weight:700;flex-shrink:0;}
+.price-card .btn{margin-top:auto;}
+
+/* ─── TESTIMONIALS ─── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.testi-card{padding:28px;transition:transform 0.3s;}
+.testi-card:hover{transform:translateY(-4px);}
+.stars{color:#ffd24a;letter-spacing:3px;margin-bottom:16px;font-size:0.9rem;}
+.testi-card p{font-size:0.9rem;color:rgba(232,246,255,0.78);margin-bottom:20px;line-height:1.65;}
+.testi-who{display:flex;align-items:center;gap:13px;}
+.testi-av{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan),var(--bio));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:#010d1a;font-size:0.84rem;flex-shrink:0;
+}
+.testi-who strong{font-size:0.87rem;display:block;margin-bottom:2px;}
+.testi-who span{font-size:0.73rem;color:rgba(232,246,255,0.5);}
+
+/* ─── CTA BANNER ─── */
+.cta-banner{
+  padding:50px 36px;
+  display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;
+  background:
+    linear-gradient(135deg,rgba(77,217,255,0.1),rgba(0,255,200,0.06)),
+    var(--glass);
+  position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  content:'';position:absolute;top:-40%;right:-5%;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,255,200,0.1),transparent 70%);
+  filter:blur(20px);
+}
+.cta-banner h2{font-family:var(--font-d);font-size:clamp(1.4rem,3vw,2.3rem);max-width:520px;font-weight:800;letter-spacing:-0.5px;}
+.cta-banner p{margin-top:10px;color:rgba(232,246,255,0.68);max-width:480px;font-size:0.93rem;line-height:1.65;}
+.cta-actions{display:flex;gap:10px;flex-wrap:wrap;}
+
+/* ─── FOOTER ─── */
+footer{padding:72px 0 32px;border-top:1px solid rgba(255,255,255,0.07);margin-top:40px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;}
+.footer-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-weight:800;font-size:1.18rem;margin-bottom:16px;}
+.footer-brand img{height:42px;width:auto;}
+.footer-desc{font-size:0.87rem;color:rgba(232,246,255,0.5);max-width:340px;line-height:1.75;}
+.footer-col h4{
+  font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;
+  color:var(--cyan);margin-bottom:18px;font-family:var(--font-m);
+}
+.footer-col ul{display:flex;flex-direction:column;gap:10px;}
+.footer-col a{font-size:0.87rem;color:rgba(232,246,255,0.6);transition:color .2s;}
+.footer-col a:hover{color:var(--bio);}
+.footer-bottom{
+  margin-top:52px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-size:0.76rem;color:rgba(232,246,255,0.4);
+}
+
+/* ─── FAB ─── */
+.fab-wa{
+  position:fixed;bottom:max(24px, env(safe-area-inset-bottom, 24px));right:20px;z-index:90;
+  width:54px;height:54px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+  background:linear-gradient(135deg,var(--cyan),var(--bio));
+  box-shadow:0 6px 24px rgba(0,255,200,0.4),0 0 0 0 rgba(0,255,200,0.3);
+  animation:fabPulse 3s ease-in-out infinite;
+  will-change:box-shadow;
+  -webkit-tap-highlight-color:transparent;
+}
+@keyframes fabPulse{
+  0%,100%{box-shadow:0 6px 24px rgba(0,255,200,0.35),0 0 0 0 rgba(0,255,200,0.3);}
+  50%{box-shadow:0 8px 32px rgba(0,255,200,0.5),0 0 0 12px rgba(0,255,200,0);}
+}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-d1{transition-delay:.1s;}
+.reveal-d2{transition-delay:.2s;}
+.reveal-d3{transition-delay:.3s;}
+.reveal-d4{transition-delay:.4s;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1000px){
+  .game-grid{grid-template-columns:repeat(2,1fr);}
+  .feature-grid{grid-template-columns:repeat(2,1fr);}
+  .process{grid-template-columns:repeat(2,1fr);}
+  .price-grid{grid-template-columns:1fr;}
+  .testi-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+}
+@media(max-width:700px){
+  .nav-links{display:none;}
+  .nav-links.open{display:flex;}
+  .nav-toggle{display:flex;}
+  .nav .btn-ghost{display:none;}
+  .game-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+  .feature-grid{grid-template-columns:1fr;gap:12px;}
+  .process{grid-template-columns:1fr;gap:12px;}
+  .process::before{display:none;}
+  .footer-grid{grid-template-columns:1fr;}
+  .cta-banner{flex-direction:column;align-items:flex-start;padding:32px 22px;}
+  .hero{padding-top:110px;padding-bottom:60px;}
+  .hero-inner{padding:0 16px;}
+  .stat-row{grid-template-columns:repeat(2,1fr);gap:8px;max-width:100%;}
+  .stat-chip strong{font-size:1.15rem;}
+  .search-panel{margin-top:20px;padding:8px;}
+  .seg button{padding:7px 11px;font-size:0.76rem;}
+  section.pad{padding:60px 0;}
+  .sec-head{margin-bottom:28px;}
+  .game-card{padding:18px 14px;}
+  .feature-card{padding:24px 18px;}
+  .price-card{padding:26px 20px;}
+  .btn{padding:10px 20px;font-size:0.84rem;}
+}
+@media(max-width:400px){
+  .hero h1{font-size:clamp(1.8rem,7.5vw,2.6rem);}
+  .stat-row{grid-template-columns:1fr 1fr;}
+  .game-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .brand span{display:none;}
+}
+@media(prefers-reduced-motion:reduce){
+  *,.bubble,.caustics,.eyebrow-dot,.fab-wa{animation:none !important;}
+  .reveal{opacity:1;transform:none;transition:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="ocean-bg"></div>
+<div class="light-rays"></div>
+<div class="caustics"></div>
+<div class="ambient-bubbles" id="ambientBubbles"></div>
+<div class="grain"></div>
+
+<!-- NAVBAR -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#beranda" class="brand">
+      <img src="https://res.cloudinary.com/dgeame9uc/image/upload/v1782529842/Hyukall_gnt11i.png" alt="Hyukall.id">
+      <span>HYUKALL.ID<small>Joki &amp; Top Up Game</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#beranda">Beranda</a></li>
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#cara-kerja">Cara Kerja</a></li>
+      <li><a href="#paket">Paket</a></li>
+      <li><a href="#testimoni">Testimoni</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://wa.me/6280000000000" target="_blank" class="btn btn-primary">🦈 Mulai Joki</a>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="beranda">
+  <div class="bubble-field" id="bubbleField"></div>
+
+  <!-- 3D Shark Canvas -->
+  <div class="shark-canvas-wrap">
+    <canvas id="sharkCanvas"></canvas>
+  </div>
+
+  <div class="hero-inner">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      // Diburu Cepat, Aman Sampai Tujuan
+    </div>
+    <h1>Naik Rank Secepat<br>Hiu Berburu di<br>Lautan Dalam</h1>
+    <p class="lede">Hyukall.id adalah jasa joki rank dan top up game tepercaya. Tim joki profesional kami bergerak senyap dan presisi, bawa akunmu sampai ke permukaan rank impian — aman, cepat, bergaransi.</p>
+
+    <div class="search-panel glass">
+      <div class="seg">
+        <button class="active" data-tab="joki">Joki Rank</button>
+        <button data-tab="topup">Top Up Game</button>
+      </div>
+      <div class="search-row">
+        <select>
+          <option>Pilih Game</option>
+          <option>Mobile Legends</option>
+          <option>PUBG Mobile</option>
+          <option>Valorant</option>
+          <option>Free Fire</option>
+          <option>Genshin Impact</option>
+          <option>Honkai Star Rail</option>
+          <option>Call of Duty Mobile</option>
+          <option>Honor of Kings</option>
+        </select>
+        <a href="#paket" class="btn btn-primary">Cari Joki</a>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="https://wa.me/6280000000000" target="_blank" class="btn btn-wa">💬 Chat Admin via WhatsApp</a>
+      <a href="#layanan" class="btn btn-ghost">Lihat Semua Layanan</a>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-chip glass reveal"><strong>12.450+</strong><span>Misi Selesai</span></div>
+      <div class="stat-chip glass reveal reveal-d1"><strong>4.9 / 5</strong><span>Rating Pelanggan</span></div>
+      <div class="stat-chip glass reveal reveal-d2"><strong>&lt; 5 Menit</strong><span>Respon Admin</span></div>
+      <div class="stat-chip glass reveal reveal-d3"><strong>24 Jam</strong><span>Joki Siap Berburu</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GAME GRID -->
+<section class="pad" id="layanan">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">Pilih Arena</div>
+      <h2>Game yang Kami Selami</h2>
+      <p>Setiap arena punya joki spesialis sendiri — paham meta, paham musuh, paham cara menang.</p>
+    </div>
+    <div class="game-grid">
+      <div class="game-card glass reveal">
+        <div class="game-icon">
+          <img src="https://play-lh.googleusercontent.com/QPMuUH7BtCNaQvamf7QlFJuW7YbpzOJvT36lVWHqYLvFCFRRjEe2YIJsIWN5e4_Y5g" alt="Mobile Legends" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="game-icon-fallback" style="display:none">⚔️</div>
+        </div>
+        <h3>Mobile Legends</h3>
+        <div class="joki-count"><span class="online-dot"></span>38 Joki Online</div>
+      </div>
+      <div class="game-card glass reveal reveal-d1">
+        <div class="game-icon">
+          <img src="https://play-lh.googleusercontent.com/CEjCPY0_UU9eVDGW0ZAJHp7QCMq0VBP3iT0a2WPe6v5Kb2aqiRQqA4GxmDOCB9FiuI0" alt="PUBG Mobile" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="game-icon-fallback" style="display:none">🎯</div>
+        </div>
+        <h3>PUBG Mobile</h3>
+        <div class="joki-count"><span class="online-dot"></span>24 Joki Online</div>
+      </div>
+      <div class="game-card glass reveal reveal-d2">
+        <div class="game-icon">
+          <img src="https://play-lh.googleusercontent.com/D8T-Z-2YK0x_CyP6NV-3rFyJHGxEY0RdGMQRTRjh_tZNqr3Z_JMBnjS9X8BmXBLcGQ" alt="Valorant" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="game-icon-fallback" style="display:none">🔫</div>
+        </div>
+        <h3>Valorant</h3>
+        <div class="joki-count"><span class="online-dot"></span>19 Joki Online</div>
+      </div>
+      <div class="game-card glass reveal reveal-d3">
+        <div class="game-icon">
+          <img src="https://play-lh.googleusercontent.com/BqnXe9UkQ-bepMQ6T-4BVGpSIkfuOe5bkrHHKbmGqY7rw9j0A2O_kRk3Vo7sWuoqT7Q" alt="Free Fire" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="game-icon-fallback" style="display:none">🪂</div>
+        </div>
+        <h3>Free Fire</h3>
+        <div class="joki-count"><span class="online-dot"></span>27 Joki Online</div>
+      </div>
+      <div class="game-card glass reveal">
+        <div class="game-icon">
+          <img src="https://play-lh.googleusercontent.com/So03NSaGQ3G0q4LpSZEVmLOqDcMjcj-VPNsmqjDolq4Y9ANeE_dAzBJk7V1DGZ7GQQ" alt="Genshin Impact" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="game-icon-fallback" style="display:none">⚡</div>
+        </div>
+        <h3>Genshin Impact</h3>
+        <div class="joki-count"><span class="online-dot"></span>15 Joki Online</div>
+      </div>
+      <div class="game-card glass reveal reveal-d1">
+        <div class="game-icon">
+          <img src="https://play-lh.googleusercontent.com/lAzfbQ0q4cEwhlrCORFwSHLJZqg-tV8kYxIkPKY4s5lCZBcFZn2JTgf_TIcwkF7T1dQ" alt="Honkai Star Rail" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="game-icon-fallback" style="display:none">🚀</div>
+        </div>
+        <h3>Honkai Star Rail</h3>
+        <div class="joki-count"><span class="online-dot"></span>11 Joki Online</div>
+      </div>
+      <div class="game-card glass reveal reveal-d2">
+        <div class="game-icon">
+          <img src="https://play-lh.googleusercontent.com/GISrOkm_TrPJiK5fTpHyYcFfZCd1_XQ3v-PkTHKSJkv3jmTI_5g7iQ3w3w0UGxiCNQ" alt="Call of Duty Mobile" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="game-icon-fallback" style="display:none">🎮</div>
+        </div>
+        <h3>Call of Duty Mobile</h3>
+        <div class="joki-count"><span class="online-dot"></span>17 Joki Online</div>
+      </div>
+      <div class="game-card glass reveal reveal-d3">
+        <div class="game-icon">
+          <img src="https://play-lh.googleusercontent.com/Uc2FGpKvG4eSjj1j-q3CFBSM7XRaYTvGKpT0fVCnpNuNv5tJ0ioGqeE3UHSaCInhw" alt="Honor of Kings" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="game-icon-fallback" style="display:none">👑</div>
+        </div>
+        <h3>Honor of Kings</h3>
+        <div class="joki-count"><span class="online-dot"></span>9 Joki Online</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="pad">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">Kenapa Hyukall</div>
+      <h2>Setenang Permukaan, Setajam Taring Hiu</h2>
+      <p>Empat alasan ribuan gamer percaya akunnya kami yang bawa naik.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card glass reveal">
+        <div class="feature-ico">🛡️</div>
+        <h3>Akun 100% Aman</h3>
+        <p>Tanpa cheat, tanpa script terlarang. Akunmu kami jaga seperti karang yang melindungi terumbu.</p>
+      </div>
+      <div class="feature-card glass reveal reveal-d1">
+        <div class="feature-ico">🦈</div>
+        <h3>Joki Pro Berpengalaman</h3>
+        <p>Tim joki minimal rank Mythic/Immortal, terlatih membaca arus pertandingan dengan tenang.</p>
+      </div>
+      <div class="feature-card glass reveal reveal-d2">
+        <div class="feature-ico">⏱️</div>
+        <h3>Proses Kilat</h3>
+        <p>Mulai dikerjakan dalam hitungan menit setelah pembayaran masuk — secepat hiu menyambar mangsa.</p>
+      </div>
+      <div class="feature-card glass reveal reveal-d3">
+        <div class="feature-ico">📡</div>
+        <h3>Pantauan Real-time</h3>
+        <p>Kamu bisa lihat progres lewat dashboard &amp; laporan admin, kapan saja, siang atau malam.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="pad" id="cara-kerja">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">Cara Kerja</div>
+      <h2>Empat Langkah Sampai ke Permukaan</h2>
+      <p>Urutan sederhana, sama seperti hiu yang berburu lalu kembali ke permukaan.</p>
+    </div>
+    <div class="process">
+      <div class="process-card glass reveal">
+        <div class="num"><div class="num-circle">01</div></div>
+        <h3>Pilih Game &amp; Paket</h3>
+        <p>Tentukan game, rank tujuan, atau jumlah top up yang kamu butuhkan.</p>
+      </div>
+      <div class="process-card glass reveal reveal-d1">
+        <div class="num"><div class="num-circle">02</div></div>
+        <h3>Lakukan Pembayaran</h3>
+        <p>Bayar lewat e-wallet, transfer bank, atau QRIS dengan aman dan mudah.</p>
+      </div>
+      <div class="process-card glass reveal reveal-d2">
+        <div class="num"><div class="num-circle">03</div></div>
+        <h3>Joki Pro Bertugas</h3>
+        <p>Joki tersertifikasi kami langsung menyelam dan mengerjakan akunmu.</p>
+      </div>
+      <div class="process-card glass reveal reveal-d3">
+        <div class="num"><div class="num-circle">04</div></div>
+        <h3>Naik &amp; Bergaransi</h3>
+        <p>Rank naik, akun aman, dan bergaransi jika ada kendala di tengah jalan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pad" id="paket">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">Paket Populer</div>
+      <h2>Pilih Kedalaman Misimu</h2>
+      <p>Harga mulai dari, sesuaikan dengan rank tujuan dan tingkat kesulitan.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card glass reveal">
+        <div class="price-tag-label">
+          <img src="https://play-lh.googleusercontent.com/QPMuUH7BtCNaQvamf7QlFJuW7YbpzOJvT36lVWHqYLvFCFRRjEe2YIJsIWN5e4_Y5g" alt="" onerror="this.style.display='none'">
+          Mobile Legends
+        </div>
+        <h3>Joki Rank Mythic</h3>
+        <div class="price-val">Rp35rb<span> / win</span></div>
+        <ul>
+          <li>Garansi rank tidak turun</li>
+          <li>Joki minimal Mythical Glory</li>
+          <li>Laporan progres berkala</li>
+          <li>Bisa request role favorit</li>
+        </ul>
+        <a href="https://wa.me/6280000000000" target="_blank" class="btn btn-primary">Pesan Sekarang</a>
+      </div>
+      <div class="price-card glass glass-hi featured reveal reveal-d1">
+        <div class="price-tag-label">
+          <img src="https://play-lh.googleusercontent.com/D8T-Z-2YK0x_CyP6NV-3rFyJHGxEY0RdGMQRTRjh_tZNqr3Z_JMBnjS9X8BmXBLcGQ" alt="" onerror="this.style.display='none'">
+          Valorant
+        </div>
+        <h3>Boost MMR Immortal</h3>
+        <div class="price-val">Rp45rb<span> / win</span></div>
+        <ul>
+          <li>Joki rank Immortal+ terverifikasi</li>
+          <li>Mode solo / duo tersedia</li>
+          <li>Proteksi VPN &amp; perangkat aman</li>
+          <li>Prioritas pengerjaan tercepat</li>
+        </ul>
+        <a href="https://wa.me/6280000000000" target="_blank" class="btn btn-primary">Pesan Sekarang</a>
+      </div>
+      <div class="price-card glass reveal reveal-d2">
+        <div class="price-tag-label">
+          <img src="https://play-lh.googleusercontent.com/CEjCPY0_UU9eVDGW0ZAJHp7QCMq0VBP3iT0a2WPe6v5Kb2aqiRQqA4GxmDOCB9FiuI0" alt="" onerror="this.style.display='none'">
+          PUBG Mobile
+        </div>
+        <h3>Push Rank Conqueror</h3>
+        <div class="price-val">Rp40rb<span> / win</span></div>
+        <ul>
+          <li>Joki Conqueror musim aktif</li>
+          <li>Statistik K/D ikut terjaga</li>
+          <li>Bisa watch replay setelah selesai</li>
+          <li>Garansi uang kembali jika gagal</li>
+        </ul>
+        <a href="https://wa.me/6280000000000" target="_blank" class="btn btn-primary">Pesan Sekarang</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="pad" id="testimoni">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">Testimoni</div>
+      <h2>Cerita dari yang Sudah Naik Rank</h2>
+      <p>Bukan kami yang bicara — biarkan mereka yang sudah merasakan.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card glass reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Rank Mythic ke Mythical Glory cuma butuh 2 hari, akun aman dan winrate ikut naik. Mantap timnya."</p>
+        <div class="testi-who"><div class="testi-av">RA</div><div><strong>Rangga A.</strong><span>Mobile Legends</span></div></div>
+      </div>
+      <div class="testi-card glass reveal reveal-d1">
+        <div class="stars">★★★★★</div>
+        <p>"Admin responsif banget, joki-nya juga sopan dan progresnya dilaporin terus. Worth it!"</p>
+        <div class="testi-who"><div class="testi-av">DS</div><div><strong>Dinda S.</strong><span>Valorant</span></div></div>
+      </div>
+      <div class="testi-card glass reveal reveal-d2">
+        <div class="stars">★★★★★</div>
+        <p>"Top up diamond masuk dalam hitungan detik, harganya juga paling masuk akal dibanding tempat lain."</p>
+        <div class="testi-who"><div class="testi-av">FY</div><div><strong>Fajar Y.</strong><span>Free Fire</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="pad">
+  <div class="wrap">
+    <div class="cta-banner glass reveal">
+      <div>
+        <h2>Siap Naik Rank Bareng Hyukall?</h2>
+        <p>Konsultasi gratis dengan admin kami, tentukan paket yang paling pas untuk misimu malam ini.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="https://wa.me/6280000000000" target="_blank" class="btn btn-primary">💬 Chat WhatsApp</a>
+        <a href="#paket" class="btn btn-ghost">Lihat Paket</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="https://res.cloudinary.com/dgeame9uc/image/upload/v1782529842/Hyukall_gnt11i.png" alt="Hyukall.id">
+          HYUKALL.ID
+        </div>
+        <p class="footer-desc">Jasa joki rank &amp; top up game tepercaya. Bergerak senyap, hasil pasti — secepat hiu menyusuri lautan dalam demi membawa akunmu naik ke permukaan rank impian.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Peta Situs</h4>
+        <ul>
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#layanan">Layanan</a></li>
+          <li><a href="#cara-kerja">Cara Kerja</a></li>
+          <li><a href="#paket">Paket</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Dukungan</h4>
+        <ul>
+          <li><a href="https://wa.me/6280000000000" target="_blank">WhatsApp</a></li>
+          <li><a href="mailto:halo@hyukall.id">Email</a></li>
+          <li><a href="#" target="_blank">Instagram</a></li>
+          <li><a href="#" target="_blank">Discord</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legalitas</h4>
+        <ul>
+          <li><a href="#">Kebijakan Privasi</a></li>
+          <li><a href="#">Syarat &amp; Ketentuan</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 HYUKALL.ID. Semua hak dilindungi.</span>
+      <span>Dibuat dengan tenang seperti laut dalam 🌊</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/6280000000000" target="_blank" class="fab-wa" aria-label="Chat WhatsApp">💬</a>
+
+<script>
+/* ═══════════════════════════════════════════
+   3D SHARK ANIMATION — optimized, pause when off-screen
+   ═══════════════════════════════════════════ */
+(function(){
+  const canvas = document.getElementById('sharkCanvas');
+  const ctx    = canvas.getContext('2d', { alpha: true });
+  let W = 0, H = 0, dpr = 1;
+  let startTime = null;
+  let rafId = null;
+  let isVisible = true;
+  let isMobile = false;
+
+  /* ── resize: always recompute from hero section ── */
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2); // cap at 2x for performance
+    isMobile = window.innerWidth < 700;
+    const hero = document.getElementById('beranda');
+    W = hero.offsetWidth;
+    H = hero.offsetHeight;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* ── Pause animation when hero is not in viewport ── */
+  const heroObs = new IntersectionObserver(entries => {
+    isVisible = entries[0].isIntersecting;
+    if(isVisible && !rafId){
+      rafId = requestAnimationFrame(loop);
+    }
+  }, {threshold: 0.01});
+  heroObs.observe(document.getElementById('beranda'));
+
+  /* ── waypoint paths for both sharks ──
+     Each waypoint: { rx, ry, flip }
+     rx/ry = fraction of W/H
+     flip  = +1 faces right, -1 faces left             */
+  const PATH1 = [
+    {rx:-0.12, ry:0.22, flip: 1},
+    {rx: 0.20, ry:0.13, flip: 1},
+    {rx: 0.50, ry:0.24, flip: 1},
+    {rx: 0.78, ry:0.12, flip: 1},
+    {rx: 1.05, ry:0.22, flip: 1},
+    {rx: 1.05, ry:0.22, flip:-1},  // turn-around seam
+    {rx: 0.75, ry:0.30, flip:-1},
+    {rx: 0.45, ry:0.16, flip:-1},
+    {rx: 0.18, ry:0.28, flip:-1},
+    {rx:-0.12, ry:0.22, flip:-1},
+  ];
+  const PATH2 = [
+    {rx: 1.10, ry:0.58, flip:-1},
+    {rx: 0.70, ry:0.67, flip:-1},
+    {rx: 0.35, ry:0.54, flip:-1},
+    {rx: 0.05, ry:0.62, flip:-1},
+    {rx:-0.10, ry:0.58, flip:-1},
+    {rx:-0.10, ry:0.58, flip: 1},  // turn-around seam
+    {rx: 0.30, ry:0.50, flip: 1},
+    {rx: 0.65, ry:0.63, flip: 1},
+    {rx: 1.10, ry:0.56, flip: 1},
+  ];
+  /* loop period in seconds */
+  const PERIOD1 = 22;   // shark 1 completes one full lap in 22s
+  const PERIOD2 = 34;   // shark 2 slower
+
+  /* ── Catmull-Rom spline ── */
+  function catmullRom(p0, p1, p2, p3, t){
+    const t2 = t*t, t3 = t2*t;
+    return {
+      x: 0.5*((2*p1.x)+(-p0.x+p2.x)*t+(2*p0.x-5*p1.x+4*p2.x-p3.x)*t2+(-p0.x+3*p1.x-3*p2.x+p3.x)*t3),
+      y: 0.5*((2*p1.y)+(-p0.y+p2.y)*t+(2*p0.y-5*p1.y+4*p2.y-p3.y)*t2+(-p0.y+3*p1.y-3*p2.y+p3.y)*t3),
+    };
+  }
+  function getPos(path, phase){
+    const n   = path.length;
+    const idx = phase * n;
+    const i   = Math.floor(idx) % n;
+    const f   = idx - Math.floor(idx);
+    const pts = [path[(i-1+n)%n], path[i], path[(i+1)%n], path[(i+2)%n]];
+    // convert rx/ry → canvas coords
+    const mapped = pts.map(p=>({x: p.rx * W, y: p.ry * H}));
+    const pos    = catmullRom(mapped[0],mapped[1],mapped[2],mapped[3], f);
+    // interpolate flip between current and next waypoint
+    const curFlip  = path[i].flip;
+    const nextFlip = path[(i+1)%n].flip;
+    const flip     = f < 0.5 ? curFlip : nextFlip;
+    return {x: pos.x, y: pos.y, flip};
+  }
+
+  /* ══════════════════════════════════
+     DRAW A SINGLE SHARK
+     sx / sy = canvas pixels
+     flip    = +1 right, -1 left
+     sc      = uniform scale multiplier
+     t       = elapsed seconds (for fin anim)
+     alpha   = opacity
+     ══════════════════════════════════ */
+  function drawShark(sx, sy, flip, sc, t, alpha){
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.translate(sx, sy);
+    ctx.scale(flip * sc, sc);
+
+    const BW = 420;   // body half-width
+    const BH = 100;   // body half-height
+
+    /* gradients (in local shark-space) */
+    const bodyG = ctx.createLinearGradient(0,-BH*1.1, 0, BH*1.1);
+    bodyG.addColorStop(0.00,'#b8eeff');
+    bodyG.addColorStop(0.20,'#62c8f0');
+    bodyG.addColorStop(0.55,'#1e78b4');
+    bodyG.addColorStop(1.00,'#09395e');
+
+    const bellyG = ctx.createLinearGradient(0, BH*0.1, 0, BH*1.1);
+    bellyG.addColorStop(0,'rgba(230,248,255,0.82)');
+    bellyG.addColorStop(1,'rgba(160,210,230,0.25)');
+
+    const shineG = ctx.createLinearGradient(-BW*0.3,-BH*0.7, BW*0.3,-BH*0.05);
+    shineG.addColorStop(0,'rgba(255,255,255,0)');
+    shineG.addColorStop(0.5,'rgba(255,255,255,0.28)');
+    shineG.addColorStop(1,'rgba(255,255,255,0)');
+
+    /* tail-wag & fin flutter driven by time */
+    const tailSwing   = Math.sin(t * 4.5) * 0.30;
+    const pectoralWag = Math.sin(t * 2.2 + 0.4) * 0.14;
+    const bodyYaw     = Math.sin(t * 4.5 * 0.5) * 0.04; // subtle body yaw
+    ctx.rotate(bodyYaw);
+
+    /* ── drop shadow ── */
+    ctx.save();
+    ctx.shadowColor = 'rgba(0,20,50,0.5)';
+    ctx.shadowBlur  = 28;
+    ctx.shadowOffsetX = 6; ctx.shadowOffsetY = 14;
+    ctx.fillStyle = 'rgba(0,0,0,0)';  // transparent — shadow only
+    ctx.beginPath();
+    ctx.ellipse(BW*0.05, BH*0.12, BW*0.52, BH*0.52, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+
+    /* ── pectoral fin (behind body) ── */
+    ctx.save();
+    ctx.translate(BW*0.05, BH*0.18);
+    ctx.rotate(pectoralWag + 0.08);
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.bezierCurveTo(-18, 60, -26, 98, -6, 112);
+    ctx.bezierCurveTo(14, 118, 36, 86, 26, 44);
+    ctx.bezierCurveTo(20, 22, 8, 6, 0, 2);
+    ctx.closePath();
+    ctx.fillStyle = '#1868a0';
+    ctx.fill();
+    ctx.restore();
+
+    /* ── pelvic fin ── */
+    ctx.save();
+    ctx.translate(BW*0.26, BH*0.28);
+    ctx.rotate(0.12);
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.bezierCurveTo(-6, 36, -4, 60, 10, 66);
+    ctx.bezierCurveTo(22, 62, 28, 40, 22, 18);
+    ctx.bezierCurveTo(18, 8, 6, 0, 0, 0);
+    ctx.closePath();
+    ctx.fillStyle = '#145a8c';
+    ctx.fill();
+    ctx.restore();
+
+    /* ── caudal (tail) fin ── */
+    ctx.save();
+    ctx.translate(BW*0.52, 0);
+    ctx.rotate(tailSwing);
+    // upper lobe
+    ctx.beginPath();
+    ctx.moveTo(0,-14);
+    ctx.bezierCurveTo(28,-72, 62,-90, 76,-58);
+    ctx.bezierCurveTo(58,-28, 28,-10, 0, 0);
+    ctx.closePath();
+    ctx.fillStyle = bodyG;
+    ctx.fill();
+    // lower lobe
+    ctx.beginPath();
+    ctx.moveTo(0, 14);
+    ctx.bezierCurveTo(22, 52, 48, 66, 62, 46);
+    ctx.bezierCurveTo(46, 22, 22, 8, 0, 2);
+    ctx.closePath();
+    ctx.fillStyle = '#1460a0';
+    ctx.fill();
+    // lobe edge highlight
+    ctx.beginPath();
+    ctx.moveTo(0,-12);
+    ctx.bezierCurveTo(26,-70, 60,-88, 74,-58);
+    ctx.strokeStyle='rgba(120,210,240,0.35)';
+    ctx.lineWidth=2; ctx.stroke();
+    ctx.restore();
+
+    /* ── main body ── */
+    ctx.beginPath();
+    ctx.moveTo(-BW*0.52, 4);
+    ctx.bezierCurveTo(-BW*0.28,-BH*0.5, BW*0.04,-BH*0.60, BW*0.30,-BH*0.45);
+    ctx.bezierCurveTo(BW*0.44,-BH*0.32, BW*0.52,-BH*0.10, BW*0.52,  4);
+    ctx.bezierCurveTo(BW*0.52, BH*0.18, BW*0.44, BH*0.42, BW*0.28, BH*0.50);
+    ctx.bezierCurveTo(BW*0.04, BH*0.60,-BW*0.28, BH*0.50,-BW*0.52,  4);
+    ctx.closePath();
+    ctx.fillStyle = bodyG;
+    ctx.fill();
+
+    /* ── belly ── */
+    ctx.beginPath();
+    ctx.moveTo(-BW*0.40, 18);
+    ctx.bezierCurveTo(-BW*0.10, BH*0.35, BW*0.20, BH*0.42, BW*0.38, BH*0.34);
+    ctx.bezierCurveTo(BW*0.46, BH*0.26, BW*0.50, BH*0.10, BW*0.50, 4);
+    ctx.bezierCurveTo(BW*0.46, BH*0.38, BW*0.04, BH*0.56,-BW*0.36, BH*0.36);
+    ctx.closePath();
+    ctx.fillStyle = bellyG;
+    ctx.fill();
+
+    /* ── dorsal fin ── */
+    ctx.beginPath();
+    ctx.moveTo(-BW*0.06,-BH*0.52);
+    ctx.bezierCurveTo(BW*0.02,-BH*1.28, BW*0.14,-BH*1.38, BW*0.20,-BH*0.92);
+    ctx.bezierCurveTo(BW*0.24,-BH*0.66, BW*0.22,-BH*0.54, BW*0.16,-BH*0.48);
+    ctx.closePath();
+    ctx.fillStyle = '#1a70b0';
+    ctx.fill();
+    // dorsal leading edge glow
+    ctx.beginPath();
+    ctx.moveTo(-BW*0.06,-BH*0.52);
+    ctx.bezierCurveTo(BW*0.02,-BH*1.27, BW*0.12,-BH*1.36, BW*0.19,-BH*0.93);
+    ctx.strokeStyle='rgba(110,200,240,0.45)';
+    ctx.lineWidth=2.5; ctx.stroke();
+
+    /* ── second dorsal fin ── */
+    ctx.save();
+    ctx.translate(BW*0.30,-BH*0.35);
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.bezierCurveTo(6,-34, 22,-42, 28,-22);
+    ctx.bezierCurveTo(20,-10, 8,-4, 0, 4);
+    ctx.closePath();
+    ctx.fillStyle='#1a70b0'; ctx.fill();
+    ctx.restore();
+
+    /* ── anal fin ── */
+    ctx.save();
+    ctx.translate(BW*0.32, BH*0.44);
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.bezierCurveTo(-4, 28, 4, 46, 16, 44);
+    ctx.bezierCurveTo(26, 38, 24, 20, 14, 6);
+    ctx.closePath();
+    ctx.fillStyle='#145480'; ctx.fill();
+    ctx.restore();
+
+    /* ── lateral line ── */
+    ctx.beginPath();
+    ctx.moveTo(-BW*0.46, -2);
+    ctx.bezierCurveTo(-BW*0.10,-24, BW*0.22,-22, BW*0.48,-6);
+    ctx.strokeStyle='rgba(80,170,215,0.50)';
+    ctx.lineWidth=1.8; ctx.stroke();
+
+    /* ── gill slits ── */
+    for(let g=0;g<5;g++){
+      const gx = -BW*0.34 + g*17;
+      ctx.beginPath();
+      ctx.moveTo(gx,-BH*0.22);
+      ctx.bezierCurveTo(gx+3,-BH*0.04, gx+3, BH*0.08, gx, BH*0.26);
+      ctx.strokeStyle='rgba(4,30,55,0.55)';
+      ctx.lineWidth=2.2; ctx.stroke();
+    }
+
+    /* ── specular shine ── */
+    ctx.beginPath();
+    ctx.moveTo(-BW*0.32,-BH*0.32);
+    ctx.bezierCurveTo(-BW*0.04,-BH*0.52, BW*0.18,-BH*0.50, BW*0.28,-BH*0.34);
+    ctx.strokeStyle = shineG;
+    ctx.lineWidth=14; ctx.lineCap='round'; ctx.stroke();
+
+    /* ── eye ── */
+    const EX=-BW*0.36, EY=-BH*0.18;
+    ctx.beginPath();
+    ctx.ellipse(EX,EY,11,9,0,0,Math.PI*2);
+    ctx.fillStyle='#020e1e'; ctx.fill();
+    // iris gleam
+    ctx.beginPath();
+    ctx.ellipse(EX-2.5,EY-2.8,3.5,3,0,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.80)'; ctx.fill();
+
+    /* ── nostril ── */
+    ctx.beginPath();
+    ctx.ellipse(-BW*0.49,-BH*0.04,4,3,-0.4,0,Math.PI*2);
+    ctx.fillStyle='rgba(4,30,55,0.5)'; ctx.fill();
+
+    /* ── mouth ── */
+    ctx.beginPath();
+    ctx.moveTo(-BW*0.50, 26);
+    ctx.bezierCurveTo(-BW*0.38, 40,-BW*0.20, 44,-BW*0.10, 38);
+    ctx.strokeStyle='rgba(2,12,28,0.60)';
+    ctx.lineWidth=2.4; ctx.lineCap='round'; ctx.stroke();
+
+    ctx.restore(); // outer save
+  }
+
+  /* ══ Main animation loop — uses rAF timestamp ══ */
+  function loop(ts){
+    rafId = null;
+    if(!isVisible) return; // pause when scrolled away
+
+    if(!startTime) startTime = ts;
+    const elapsed = (ts - startTime) / 1000; // seconds
+
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,W,H);
+
+    /* SHARK 1 — large, foreground */
+    const phase1 = (elapsed % PERIOD1) / PERIOD1;
+    const p1     = getPos(PATH1, phase1);
+    const bob1   = Math.sin(elapsed * 1.4) * H * 0.012;
+    drawShark(p1.x, p1.y + bob1, p1.flip, W * 0.00052, elapsed, 0.94);
+
+    /* SHARK 2 — smaller, background depth (skip on very small screens) */
+    if(!isMobile || W > 500){
+      const phase2 = (elapsed % PERIOD2) / PERIOD2;
+      const p2     = getPos(PATH2, phase2);
+      const bob2   = Math.sin(elapsed * 1.0 + 2.0) * H * 0.010;
+      ctx.save();
+      ctx.filter='blur(2px)';
+      drawShark(p2.x, p2.y + bob2, p2.flip, W * 0.00029, elapsed + 5, 0.28);
+      ctx.filter='none';
+      ctx.restore();
+    }
+
+    rafId = requestAnimationFrame(loop);
+  }
+  rafId = requestAnimationFrame(loop);
+})();
+
+/* ═══════════════════
+   BUBBLES
+   ═══════════════════ */
+function spawnBubble(container, o){
+  const b = document.createElement('div');
+  b.className = 'bubble' + (o.soft?' soft':'') + (o.tiny?' tiny':'') + (o.wobble?' wobble':'');
+  b.style.cssText = `width:${o.size}px;height:${o.size}px;left:${o.left}%;--drift:${o.drift}px;animation-duration:${o.dur}s;animation-delay:${o.delay}s;`;
+  container.appendChild(b);
+}
+const isMobileDevice = /Mobi|Android|iPhone/i.test(navigator.userAgent) || window.innerWidth < 700;
+const bubbleCount = isMobileDevice ? 25 : 60;
+const ambientCount = isMobileDevice ? 18 : 42;
+const field = document.getElementById('bubbleField');
+for(let i=0;i<bubbleCount;i++){
+  const big = Math.random() > 0.68;
+  spawnBubble(field,{size:big?Math.random()*18+12:Math.random()*8+2,left:Math.random()*100,drift:Math.random()*80-40,dur:Math.random()*10+7,delay:Math.random()*16,soft:big&&Math.random()>.5,tiny:!big&&Math.random()>.6,wobble:!isMobileDevice&&Math.random()>.45});
+}
+const amb = document.getElementById('ambientBubbles');
+for(let i=0;i<ambientCount;i++){
+  const big = Math.random() > 0.72;
+  spawnBubble(amb,{size:big?Math.random()*22+14:Math.random()*7+2,left:Math.random()*100,drift:Math.random()*100-50,dur:Math.random()*18+14,delay:Math.random()*25,soft:true,tiny:!big,wobble:!isMobileDevice&&Math.random()>.4});
+}
+
+/* ═══════════════════
+   NAVBAR
+   ═══════════════════ */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+},{passive:true});
+
+// Mobile nav toggle
+const toggle = nav.querySelector('.nav-toggle');
+const navLinks = nav.querySelector('.nav-links');
+toggle.addEventListener('click',()=>{
+  const isOpen = navLinks.classList.toggle('open');
+  toggle.classList.toggle('active', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+// Close nav when link is clicked
+navLinks.querySelectorAll('a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    navLinks.classList.remove('open');
+    toggle.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ═══════════════════
+   SEG TABS
+   ═══════════════════ */
+document.querySelectorAll('.seg button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.seg button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+/* ═══════════════════
+   SCROLL REVEAL
+   ═══════════════════ */
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
